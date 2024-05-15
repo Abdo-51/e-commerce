@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../services/products.service';
 import { Router } from '@angular/router';
-import { Subject, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-all-products',
@@ -14,6 +13,7 @@ supportText: string = '';
 supportUrl: string = '';
 currentPage: number = 1;
 totalPages!: number;
+isLoading = false;
 
 
 constructor(private productsService: ProductsService , private router: Router,)
@@ -22,8 +22,6 @@ constructor(private productsService: ProductsService , private router: Router,)
 }
 ngOnInit(){
   this.getProduct(this.currentPage);
-
-
 }
 
 getProduct(page: number): void {
@@ -33,20 +31,22 @@ getProduct(page: number): void {
     this.supportUrl = res.support.url;
     this.currentPage = res.page;
     this.totalPages = res.total_pages;
-   
-    
+    this.isLoading = false;
   } , error => {
     alert("erorr")
+    this.isLoading = false;
   });
 }
 
 goToPage(page: number): void {
   if (page > 0 && page <= this.totalPages) {
     this.getProduct(page);
+    this.isLoading = false;
+
   }
 }
 getProductDetails(id: number): void {
     this.router.navigate(['/details', id]);
+    this.isLoading = false;
 }
-
 }

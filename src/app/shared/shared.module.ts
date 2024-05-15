@@ -4,6 +4,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { RouterModule } from '@angular/router';
 import {     HttpClientModule } from '@angular/common/http'
 import { BrowserModule } from '@angular/platform-browser';
+import { ProductsModule } from '../products/products.module';
 
 
 
@@ -15,7 +16,8 @@ import { BrowserModule } from '@angular/platform-browser';
     CommonModule,
     RouterModule,
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    ProductsModule
   ],
   exports: [HeaderComponent]
 })

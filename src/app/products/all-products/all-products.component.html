@@ -1,13 +1,10 @@
 <div class="mt-5">
-    <!-- <div class="my-2 w-25">
-        <label for="" class="my-1"> Categories :</label>
-        <select class="form-control">
-            <option value="1">option 1</option>
-        </select>
-    </div> -->
-
       <div class="container">
+      
         <div class="row">
+          <div class="loading-bar" *ngIf="isLoading">
+            <div class="spinner"></div>
+          </div>
           <div class="col-md-3 col-sm-12 mb-4" *ngFor="let product of products">
             <div class="card h-100 shadow-sm">
               <img [src]="product.avatar" class="card-img-top" alt="{{product.first_name}} {{product.last_name}}">
